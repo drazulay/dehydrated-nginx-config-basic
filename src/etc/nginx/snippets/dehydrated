@@ -1,0 +1,8 @@
+location ^~ /.well-known/acme-challenge/ {
+	default_type "text/plain";
+	rewrite /.well-known/acme-challenge/(.*) /$1 break;
+	root /var/www/dehydrated/acme;
+}
+location = /.well-known/acme-challenge/ {
+	return 404;
+}

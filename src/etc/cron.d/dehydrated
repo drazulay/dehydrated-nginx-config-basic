@@ -1,0 +1,1 @@
+30 0,12 * * * root date >| /var/log/dehydrated.log && /usr/bin/dehydrated -4 -a prime256v1 -t http-01 -c --accept-terms >> /var/log/dehydrated.log 2>&1
