@@ -51,7 +51,7 @@ openssl dhparam -out dhparam.pem 4096
 ```
 ..to get your dhparam.pem file for use in nginx's ssl configs. This will take a while as it needs to farm some entropy.
 
-- Now edit your nginx configuration to enable ssl and include the relevant keypairs. Something like this:
+- Now add/edit your `/etc/nginx/sites-available/mydomain.eu` nginx configuration file to enable ssl and include the relevant keypairs. Something like this:
 
 ```
 	listen 443 ssl;
@@ -69,7 +69,12 @@ openssl dhparam -out dhparam.pem 4096
         ssl_session_cache shared:SSL:10m;
 ```
 
-- Restart nginx:
+- Next, link your `/etc/nginx/sites-available/mydomain.eu` file to `/etc/nginx/sites-enabled/mydomain.eu` (now it won't break nginx with the keys/certs present):
+```
+ln -s /etc/nginx/sites-available/mydomain.eu /etc/nginx/sites-enabled/mydomain.eu
+```
+
+- Finally, restart nginx:
 `sudo service nginx restart`
 
-Neat!
+Neat! Check your browser, you should see a valid certificate.
