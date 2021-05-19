@@ -1,4 +1,4 @@
-# Configuration for Dehydrated
+# Basic dehydrated configuration for NGiNX
 Disclaimer: This guide was written off the top of my head so there may be some mistakes or inconsistencies. If you bork your machine, that's on you.
 
 ## Prerequisites:
