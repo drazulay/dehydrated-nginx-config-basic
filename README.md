@@ -36,6 +36,13 @@ mydomain.eu
 www.mydomain.eu
 ```
 
+- Run the following command..
+```
+cd /var/www/dehydrated/certs
+openssl dhparam -out dhparam.pem 4096
+```
+..to get your dhparam.pem file for use in nginx's ssl configs. This will take a while as it needs to farm some entropy.
+
 - Set the correct permissions for `/var/www/dehydrated`:
 `sudo chown -R dehydrated:www-data /var/www/dehydrated`
 
@@ -43,13 +50,6 @@ www.mydomain.eu
 `sudo dehydrated -4 -a secp384r1 -t http-01 -c --accept-terms`
 
 **Note:** you only need to run dehydrated manually once, in order make sure it works and to get the initial key/cert pairs for your nginx configuration. From now on cron should do this twice daily, if you correctly copied over the files at the beginning.
-
-- As user `dehydrated`, run..
-```
-cd /var/www/dehydrated/certs
-openssl dhparam -out dhparam.pem 4096
-```
-..to get your dhparam.pem file for use in nginx's ssl configs. This will take a while as it needs to farm some entropy.
 
 - Now add/edit your `/etc/nginx/sites-available/mydomain.eu` nginx configuration file to enable ssl and include the relevant keypairs. Something like this:
 
