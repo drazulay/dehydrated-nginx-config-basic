@@ -33,7 +33,6 @@ server {
 
 ```
 mydomain.eu
-www.mydomain.eu
 ```
 
 - Run the following command..
@@ -56,7 +55,7 @@ openssl dhparam -out dhparam.pem 4096
 ```
 	listen 443 ssl;
         listen [::]:443 ssl;
-	server_name mydomain.eu www.mydomain.eu
+	server_name mydomain.eu
 	
         ssl_certificate /var/www/dehydrated/certs/mydomain.eu/fullchain.pem;
         ssl_certificate_key /var/www/dehydrated/certs/mydomain.eu/privkey.pem;
@@ -78,3 +77,5 @@ ln -s /etc/nginx/sites-available/mydomain.eu /etc/nginx/sites-enabled/mydomain.e
 `sudo service nginx restart`
 
 Neat! Check your browser, you should see a valid certificate.
+
+If you need wildcard domain certificates, that's another story, it involved editing DNS records and I'll leave the reader to figure that one out.
